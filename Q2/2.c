@@ -2,38 +2,42 @@
 #include <stdlib.h>
 #include <string.h>
 
+/*node structure contains int key which is the key of the treenode
+structure treeNode *left is the pointer to the left subtree
+structure treeNode *right is the pointer to the right subtree
+*/
 struct treeNode {
     int key;
     struct treeNode *left;
     struct treeNode *right;
 };
 
+//shortcut
 typedef struct treeNode treeNode;
 
+//uses recursive to insert tree node after comparing with the nodes
+//if the node key is larger than the root, it is inserted to the right 
+//if node key is smaller than root key, it is inserted into the left
 treeNode * Insert(treeNode * currentNode, int key) {
+    // Case 1: If the tree rooted at currentNode is empty
     if (currentNode == NULL) {
         currentNode= (treeNode*)malloc(sizeof(struct treeNode));
         currentNode->key = key;
         currentNode -> left = NULL;
         currentNode -> right = NULL;
-        // Case 1: If the tree rooted at currentNode is empty
-        // To be implemented
-    }
-    if (key > (currentNode -> key)) {
-        
-        currentNode -> right = Insert(currentNode -> right, key);
 
-        // Case 2: If the tree rooted at currentNode is not empty and if the given key is greater than currentNode -> key
-        // To be implemented
     }
+    // Case 2: If the tree rooted at currentNode is not empty and if the given key is greater than currentNode -> key
+    if (key > (currentNode -> key)) {
+        currentNode -> right = Insert(currentNode -> right, key);
+    }
+    // Case 3: If the tree rooted at currentNode is not empty and if the given key is smaller than currentNode -> key
     else if (key < (currentNode -> key)) {
-        currentNode -> left = Insert(currentNode -> left, key);
-        // Case 3: If the tree rooted at currentNode is not empty and if the given key is smaller than currentNode -> key
-        // To be implemented
+        currentNode -> left = Insert(currentNode -> left, key);    
     }
     return currentNode;
 }
-
+//prints all elements in the tree in ascending order
 void Print(treeNode *currentNode){
     if(currentNode ==NULL){
         return;
@@ -43,6 +47,7 @@ void Print(treeNode *currentNode){
     Print(currentNode->right);
 }
 
+//Looks for minimum element in the tree
 treeNode * FindMin(treeNode *currentNode) {
     if(currentNode -> left == NULL){
         return currentNode;
@@ -50,6 +55,7 @@ treeNode * FindMin(treeNode *currentNode) {
     FindMin(currentNode -> left);
 }
 
+//Looks for maximum element in the tree
 treeNode * FindMax(treeNode *currentNode) {
     if(currentNode -> right == NULL){
         return currentNode;
@@ -57,15 +63,16 @@ treeNode * FindMax(treeNode *currentNode) {
     FindMax(currentNode -> right);
 }
 
+//Looks for element key in the tree
 treeNode * Find(treeNode * currentNode, int key) {
     if((*currentNode).key == key){
         return currentNode;
     }
     else{
         if((currentNode -> left != NULL)){
-            Find(currentNode ->left, key);
-            if(currentNode -> left ==NULL){
-                return currentNode;
+            treeNode *left = Find(currentNode ->left, key);
+            if(left !=NULL){
+                return left;
             }
         }
         if((currentNode -> right != NULL)){
@@ -73,8 +80,6 @@ treeNode * Find(treeNode * currentNode, int key) {
         }
     }
     return NULL;
-    
-    // To be implemented
 }
 
 
