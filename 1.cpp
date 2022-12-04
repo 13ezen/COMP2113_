@@ -3,9 +3,11 @@
 #include<algorithm> 
 #include<map> 
 #include<vector> 
-// You can add more libraries here (if needed) 
 using namespace std; 
+
 // Define structure, classes and member functions
+//int id stores student ID, int grade stores student grade
+//string name stores student name
 struct Student {
     int id,grade;
     string name;
@@ -20,6 +22,7 @@ struct Student {
     };
 };
 
+//vector<Student> records used to store student information
 class Table {
 public: 
     void InsertStudent(Student x); 
@@ -31,23 +34,18 @@ public:
  // implementation.
 private: 
     vector<Student> records;
-    //map<Student, int> records;
- /* The data type is decided by you */ 
- //records;
 };
 
 //sort in ascending order of id 
 bool operator<(const Student&a, const Student&b) {
     return a.id < b.id;
- // This function may be required by your implementation.
 }
 
 //sort in ascending order of grade 
 bool Compare(const Student&a, const Student&b) {
     return a.grade < b.grade;
- // This function may be required by your implementation.
 }
-//insert one record in to the map
+//insert one record in to the vector
 void Table::InsertStudent(Student x) {
     if(records.size()!=0){
         for(int i = 0; i<records.size() ; i++){
