@@ -31,11 +31,13 @@ public:
  // You can add more member functions to help your
  // implementation.
 private: 
+    map<Student, int> records;
  /* The data type is decided by you */ 
  //records;
 };
 
 bool operator<(const Student&a, const Student&b) {
+    return a.id < b.id;
  // This function may be required by your implementation.
 }
 //insert one record in to the map
@@ -87,21 +89,6 @@ int main() {
             break;
         }
 }
-BLABLABLA
-fdsfasdas
-fdsafdsa
-fdsafsafdsfasdfd
-dsfadfsad
-fasdfdssad
-fdsfasdfsa
-fdfasd
-fdsafasdfdafa
-dfasfdsafd
-dsafsdfsadfd
-sdafasdfsdafasd
-dsfasfdsfafd
-fdsafsfdsfa
-fdsafsdas
 
 return 0; 
 }
