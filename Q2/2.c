@@ -54,10 +54,26 @@ treeNode * FindMax(treeNode *currentNode) {
     if(currentNode -> right == NULL){
         return currentNode;
     }
-    FindMin(currentNode -> right);
+    FindMax(currentNode -> right);
 }
 
 treeNode * Find(treeNode * currentNode, int key) {
+    if((*currentNode).key == key){
+        return currentNode;
+    }
+    else{
+        if((currentNode -> left != NULL)){
+            Find(currentNode ->left, key);
+            if(currentNode -> left ==NULL){
+                return currentNode;
+            }
+        }
+        if((currentNode -> right != NULL)){
+            return Find(currentNode ->right, key);
+        }
+    }
+    return NULL;
+    
     // To be implemented
 }
 
