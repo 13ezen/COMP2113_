@@ -19,6 +19,8 @@ struct Student {
     };
 };
 
+
+
 class Table {
 public: 
     void InsertStudent(Student x, int y); 
@@ -29,7 +31,8 @@ public:
  // You can add more member functions to help your
  // implementation.
 private: 
- /* The data type is decided by you */ records;
+ /* The data type is decided by you */ 
+ //records;
 };
 
 bool operator<(const Student&a, const Student&b) {
@@ -84,5 +87,21 @@ int main() {
             break;
         }
 }
+BLABLABLA
+fdsfasdas
+fdsafdsa
+fdsafsafdsfasdfd
+dsfadfsad
+fasdfdssad
+fdsfasdfsa
+fdfasd
+fdsafasdfdafa
+dfasfdsafd
+dsafsdfsadfd
+sdafasdfsdafasd
+dsfasfdsfafd
+fdsafsfdsfa
+fdsafsdas
+
 return 0; 
 }
