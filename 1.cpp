@@ -13,10 +13,10 @@ struct Student {
         id = 0;
         name = "invalid";
     };
-    Student(int inputid, string inputname, int grade) {
+    Student(int inputid, string inputname, int g) {
         id = inputid;
         name = inputname;
-        grade = grade;
+        grade = g;
     };
 };
 
@@ -36,8 +36,15 @@ private:
  //records;
 };
 
+//sort in ascending order of id 
 bool operator<(const Student&a, const Student&b) {
     return a.id < b.id;
+ // This function may be required by your implementation.
+}
+
+//sort in ascending order of grade 
+bool Compare(const Student&a, const Student&b) {
+    return a.grade < b.grade;
  // This function may be required by your implementation.
 }
 //insert one record in to the map
@@ -61,7 +68,6 @@ void Table::SearchbyID(int x) {
     int count = 0;
     sort(records.begin(),records.end());
     for (auto itr = records.begin(); itr<records.end(); itr++){
-        cout << (*itr).id << endl;
         if((*itr).id == x){
             cout << (*itr).name << endl;
             cout << (*itr).grade << endl;
@@ -76,17 +82,31 @@ void Table::SearchbyGrade(int y) {
     int count = 0;
     sort(records.begin(),records.end());
     for (auto itr = records.begin(); itr<records.end(); itr++){
-        cout << (*itr).grade << endl;
         if((*itr).grade == y){
-            cout << (*itr).id << (*itr).name << endl;
+            cout << (*itr).id << " " << (*itr).name << endl;
             break;
         }
         count+=1;
     }
     if(count==records.size()){cout << "No such student." << endl;}
 }
+
+//Print maximum, median, minimum of grades
 void Table::Statistics() {
- // To be implemented
+    int max, min, size = records.size();
+    double average;
+    sort(records.begin(),records.end(),Compare);
+    min=(*records.begin()).grade;
+    max=(*(records.end()-1)).grade;
+    cout << "Maximum " << max << endl;
+    if(size%2==0){
+        average = (records[(size/2)-1].grade + records[size/2].grade)/2.0;
+    }
+    else{
+        average = records[size/2].grade;
+    }
+    cout << "Median " << average << endl;
+    cout << "Minimum " << min << endl;
 }
 //Print all records in the accending order of id
 void Table::PrintAll() {
