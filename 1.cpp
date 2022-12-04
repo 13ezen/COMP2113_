@@ -7,23 +7,22 @@
 using namespace std; 
 // Define structure, classes and member functions
 struct Student {
-    int id;
+    int id,grade;
     string name;
     Student() {
         id = 0;
         name = "invalid";
     };
-    Student(int inputid, string inputname) {
+    Student(int inputid, string inputname, int grade) {
         id = inputid;
         name = inputname;
+        grade = grade;
     };
 };
 
-
-
 class Table {
 public: 
-    void InsertStudent(Student x, int y); 
+    void InsertStudent(Student x); 
     void SearchbyID(int x); 
     void SearchbyGrade(int y); 
     void Statistics(); 
@@ -31,7 +30,8 @@ public:
  // You can add more member functions to help your
  // implementation.
 private: 
-    map<Student, int> records;
+    vector<Student> records;
+    //map<Student, int> records;
  /* The data type is decided by you */ 
  //records;
 };
@@ -41,8 +41,20 @@ bool operator<(const Student&a, const Student&b) {
  // This function may be required by your implementation.
 }
 //insert one record in to the map
-void Table::InsertStudent(Student x, int y) {
- // To be implemented
+void Table::InsertStudent(Student x) {
+    if(records.size()!=0){
+        for(int i = 0; i<records.size() ; i++){
+            if (records[i].id == x.id){
+                cout << "Student exists." << endl;
+                break;
+            }
+        }
+        records.insert(records.end(),x);   
+    }
+    else{
+        records.insert(records.end(),x);
+    }
+    
 }
 //return the name and grade of the student with id x
 void Table::SearchbyID(int x) {
@@ -57,7 +69,11 @@ void Table::Statistics() {
 }
 //Print all records in the accending order of id
 void Table::PrintAll() {
- // To be implemented
+    vector<Student>::iterator itr;
+    for (itr = records.begin(); itr!=records.end(); itr++){
+        cout << (*itr).id << ' ' << (*itr).name << ' ' << (*itr).grade;
+        itr++;
+    } 
 }
 int main() { 
     Table t;
@@ -68,8 +84,8 @@ int main() {
     while (cin >> command) {
         if (command == "InsertStudent") {
             cin >> id >> name >> grade;
-            Student s = {id, name};
-            t.InsertStudent(s, grade);
+            Student s = {id, name, grade};
+            t.InsertStudent(s);
     }
         else if (command == "SearchbyID") {
             cin >> id;
