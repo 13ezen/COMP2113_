@@ -61,6 +61,7 @@ void Table::SearchbyID(int x) {
     int count = 0;
     sort(records.begin(),records.end());
     for (auto itr = records.begin(); itr<records.end(); itr++){
+        cout << (*itr).id << endl;
         if((*itr).id == x){
             cout << (*itr).name << endl;
             cout << (*itr).grade << endl;
@@ -72,7 +73,17 @@ void Table::SearchbyID(int x) {
 }
 //return the id and name of the student with grade y
 void Table::SearchbyGrade(int y) {
- // To be implemented
+    int count = 0;
+    sort(records.begin(),records.end());
+    for (auto itr = records.begin(); itr<records.end(); itr++){
+        cout << (*itr).grade << endl;
+        if((*itr).grade == y){
+            cout << (*itr).id << (*itr).name << endl;
+            break;
+        }
+        count+=1;
+    }
+    if(count==records.size()){cout << "No such student." << endl;}
 }
 void Table::Statistics() {
  // To be implemented
@@ -81,7 +92,7 @@ void Table::Statistics() {
 void Table::PrintAll() {
     sort(records.begin(),records.end());
     for (auto itr = records.begin(); itr<records.end(); itr++){
-        cout << (*itr).id << ' ' << (*itr).name << ' ' << (*itr).grade<< endl;;
+        cout << (*itr).id << ' ' << (*itr).name << ' ' << (*itr).grade<< endl;
     }
     } 
 int main() { 
