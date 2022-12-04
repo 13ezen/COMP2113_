@@ -20,21 +20,14 @@ treeNode * Insert(treeNode * currentNode, int key) {
         // To be implemented
     }
     if (key > (currentNode -> key)) {
-        treeNode *right = currentNode -> right;
-        right = (treeNode*)malloc(sizeof(struct treeNode));
-        right -> key = key;
-        right -> left = NULL;
-        right -> right = NULL;
+        
+        currentNode -> right = Insert(currentNode -> right, key);
 
         // Case 2: If the tree rooted at currentNode is not empty and if the given key is greater than currentNode -> key
         // To be implemented
     }
     else if (key < (currentNode -> key)) {
-        treeNode *left = currentNode -> left
-        left = (treeNode*)malloc(sizeof(struct treeNode));
-        left -> key = key;
-        right -> left = NULL;
-        right -> right = NULL;
+        currentNode -> left = Insert(currentNode -> left, key);
         // Case 3: If the tree rooted at currentNode is not empty and if the given key is smaller than currentNode -> key
         // To be implemented
     }
@@ -51,11 +44,17 @@ void Print(treeNode *currentNode){
 }
 
 treeNode * FindMin(treeNode *currentNode) {
-    // To be implemented
+    if(currentNode -> left == NULL){
+        return currentNode;
+    }
+    FindMin(currentNode -> left);
 }
 
 treeNode * FindMax(treeNode *currentNode) {
-    // To be implemented
+    if(currentNode -> right == NULL){
+        return currentNode;
+    }
+    FindMin(currentNode -> right);
 }
 
 treeNode * Find(treeNode * currentNode, int key) {
