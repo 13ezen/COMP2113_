@@ -49,16 +49,26 @@ void Table::InsertStudent(Student x) {
                 break;
             }
         }
-        records.insert(records.end(),x);   
+        records.insert(records.begin(),x);   
     }
     else{
-        records.insert(records.end(),x);
+        records.insert(records.begin(),x);
     }
     
 }
 //return the name and grade of the student with id x
 void Table::SearchbyID(int x) {
- // To be implemented
+    int count = 0;
+    sort(records.begin(),records.end());
+    for (auto itr = records.begin(); itr<records.end(); itr++){
+        if((*itr).id == x){
+            cout << (*itr).name << endl;
+            cout << (*itr).grade << endl;
+            break;
+        }
+        count+=1;
+    }
+    if(count==records.size()){cout << "No such student." << endl;}
 }
 //return the id and name of the student with grade y
 void Table::SearchbyGrade(int y) {
@@ -69,12 +79,11 @@ void Table::Statistics() {
 }
 //Print all records in the accending order of id
 void Table::PrintAll() {
-    vector<Student>::iterator itr;
-    for (itr = records.begin(); itr!=records.end(); itr++){
-        cout << (*itr).id << ' ' << (*itr).name << ' ' << (*itr).grade;
-        itr++;
+    sort(records.begin(),records.end());
+    for (auto itr = records.begin(); itr<records.end(); itr++){
+        cout << (*itr).id << ' ' << (*itr).name << ' ' << (*itr).grade<< endl;;
+    }
     } 
-}
 int main() { 
     Table t;
     string command;
